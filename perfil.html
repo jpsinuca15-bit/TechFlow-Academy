@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechFlow Academy — Meu Perfil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0d14;
+        --bg-elev: #12161f;
+        --card: #161b26;
+        --text: #f2f0ea;
+        --muted: #8b92a5;
+        --accent: #6c5ce7;
+        --accent-2: #e8b94a;
+        --danger: #e86a6a;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Sora", sans-serif;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 5%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .logo {
+        font-weight: 800;
+        font-size: 1.25rem;
+        font-family: "Sora";
+      }
+      .logo span {
+        color: var(--accent-2);
+      }
+      .back-link {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+      }
+      .back-link:hover {
+        color: var(--text);
+      }
+
+      .wrap {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 44px 5% 80px;
+      }
+      .profile-head {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 36px;
+      }
+      .avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.3rem;
+        font-family: "Sora";
+      }
+      .profile-head h1 {
+        font-size: 1.35rem;
+      }
+      .profile-head .sub {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-top: 4px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--radius);
+        padding: 26px;
+        margin-bottom: 20px;
+      }
+      .card h2 {
+        font-size: 1rem;
+        margin-bottom: 18px;
+      }
+      label {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 6px;
+        display: block;
+      }
+      input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 9px;
+        margin-bottom: 16px;
+        background: var(--bg-elev);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        font-size: 0.9rem;
+        font-family: "Inter";
+      }
+      input:disabled {
+        opacity: 0.55;
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .row-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .btn {
+        padding: 12px 22px;
+        border: none;
+        border-radius: 9px;
+        font-weight: 700;
+        font-size: 0.87rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        opacity: 0.88;
+      }
+      .btn-danger {
+        background: rgba(232, 106, 106, 0.12);
+        color: var(--danger);
+      }
+      .btn-danger:hover {
+        background: rgba(232, 106, 106, 0.2);
+      }
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+      }
+
+      .msg {
+        font-size: 0.82rem;
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        display: none;
+      }
+      .msg.error {
+        background: rgba(232, 106, 106, 0.12);
+        color: var(--danger);
+        display: block;
+      }
+      .msg.success {
+        background: rgba(76, 209, 155, 0.12);
+        color: #4cd19b;
+        display: block;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+      .stat {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 12px;
+        padding: 18px;
+        text-align: center;
+      }
+      .stat .n {
+        font-family: "Sora";
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--accent-2);
+      }
+      .stat .l {
+        color: var(--muted);
+        font-size: 0.75rem;
+        margin-top: 4px;
+      }
+
+      .danger-zone {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Tech<span>Flow Academy</span></div>
+      <a class="back-link" href="membros.html">← Voltar pra área de membros</a>
+    </nav>
+
+    <div class="wrap">
+      <div class="profile-head">
+        <div class="avatar" id="avatarInitials">--</div>
+        <div>
+          <h1 id="displayName">Carregando...</h1>
+          <div class="sub" id="displayEmail">—</div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="n">6</div>
+          <div class="l">Cursos disponíveis</div>
+        </div>
+        <div class="stat">
+          <div class="n" id="statConcluidas">0</div>
+          <div class="l">Aulas concluídas</div>
+        </div>
+        <div class="stat">
+          <div class="n" id="statPlano">—</div>
+          <div class="l">Status</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Dados da conta</h2>
+        <form id="profileForm" onsubmit="return updateProfile(event);">
+          <label for="fullName">Nome completo</label>
+          <input type="text" id="fullName" placeholder="Seu nome" />
+
+          <label for="email">E-mail</label>
+          <input type="email" id="email" disabled />
+
+          <button class="btn btn-primary" type="submit">
+            Salvar alterações
+          </button>
+          <div class="msg" id="profileMsg"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Alterar senha</h2>
+        <form id="passForm" onsubmit="return updatePassword(event);">
+          <div class="row-2">
+            <div>
+              <label for="newPass">Nova senha</label>
+              <input type="password" id="newPass" minlength="6" required />
+            </div>
+            <div>
+              <label for="confirmPass">Confirmar nova senha</label>
+              <input type="password" id="confirmPass" minlength="6" required />
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Atualizar senha</button>
+          <div class="msg" id="passMsg"></div>
+        </form>
+      </div>
+
+      <div class="card danger-zone">
+        <div>
+          <h2 style="margin-bottom: 4px">Sair da conta</h2>
+          <div class="sub" style="color: var(--muted); font-size: 0.82rem">
+            Você pode entrar novamente quando quiser.
+          </div>
+        </div>
+        <button class="btn btn-ghost" onclick="logout()">Sair</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const SUPABASE_URL = "COLE_AQUI_SUA_URL_DO_SUPABASE";
+      const SUPABASE_ANON_KEY = "COLE_AQUI_SUA_CHAVE_ANON_DO_SUPABASE";
+      const supabase = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+      );
+
+      async function loadProfile() {
+        const {
+          data: { user },
+        } = await supabase.auth.getUser();
+        if (!user) {
+          window.location.href = "login.html";
+          return;
+        }
+        const name = user.user_metadata?.full_name || "Aluno TechFlow";
+        document.getElementById("displayName").innerText = name;
+        document.getElementById("displayEmail").innerText = user.email;
+        document.getElementById("fullName").value = name;
+        document.getElementById("email").value = user.email;
+        document.getElementById("avatarInitials").innerText = name
+          .split(" ")
+          .map((p) => p[0])
+          .slice(0, 2)
+          .join("")
+          .toUpperCase();
+
+        document.getElementById("statConcluidas").innerText = "0";
+        document.getElementById("statPlano").innerText = "Ativo";
+      }
+
+      function showMsg(id, text, type) {
+        const box = document.getElementById(id);
+        box.innerText = text;
+        box.className = "msg " + type;
+      }
+
+      async function updateProfile(e) {
+        e.preventDefault();
+        const fullName = document.getElementById("fullName").value.trim();
+        const { error } = await supabase.auth.updateUser({
+          data: { full_name: fullName },
+        });
+        if (error) {
+          showMsg("profileMsg", error.message, "error");
+          return false;
+        }
+        showMsg("profileMsg", "Dados atualizados com sucesso!", "success");
+        document.getElementById("displayName").innerText = fullName;
+        return false;
+      }
+
+      async function updatePassword(e) {
+        e.preventDefault();
+        const newPass = document.getElementById("newPass").value;
+        const confirm = document.getElementById("confirmPass").value;
+        if (newPass !== confirm) {
+          showMsg("passMsg", "As senhas não coincidem.", "error");
+          return false;
+        }
+        const { error } = await supabase.auth.updateUser({ password: newPass });
+        if (error) {
+          showMsg("passMsg", error.message, "error");
+          return false;
+        }
+        showMsg("passMsg", "Senha atualizada com sucesso!", "success");
+        document.getElementById("passForm").reset();
+        return false;
+      }
+
+      async function logout() {
+        await supabase.auth.signOut();
+        window.location.href = "login.html";
+      }
+
+      loadProfile();
+    </script>
+  </body>
+</html>

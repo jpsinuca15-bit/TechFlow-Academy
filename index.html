@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechFlow Academy — Aprenda a Vender com IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0D14; --bg-elev:#12161F; --card:#161B26; --text:#F2F0EA; --muted:#8B92A5;
+    --accent:#6C5CE7; --accent-2:#E8B94A; --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Sora',sans-serif; }
+  a{ color:inherit; text-decoration:none; }
+  .container{ max-width:1100px; margin:0 auto; padding:0 5%; }
+
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 5%; position:sticky; top:0; z-index:50; background:rgba(10,13,20,0.85); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,0.05); }
+  .logo{ font-weight:800; font-size:1.25rem; font-family:'Sora'; }
+  .logo span{ color:var(--accent-2); }
+  .nav-links{ display:flex; gap:20px; }
+  .nav-links a{ color:var(--muted); font-size:0.9rem; font-weight:500; transition: color 0.2s; }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{ background:var(--text); color:var(--bg); padding:10px 20px; border-radius:9px; font-weight:700; font-size:0.85rem; }
+
+  .hero{ position:relative; padding:90px 5% 70px; overflow:hidden; text-align:center; }
+  .hero::before{ content:""; position:absolute; inset:0; z-index:0;
+    background: radial-gradient(55% 55% at 50% 0%, rgba(108,92,231,0.3), transparent 60%); }
+  .hero-inner{ position:relative; z-index:1; max-width:720px; margin:0 auto; }
+  .eyebrow{ color:var(--accent-2); font-size:0.8rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; }
+  .hero h1{ font-size:clamp(2.1rem,5.5vw,3.4rem); line-height:1.1; letter-spacing:-0.02em; margin-top:16px; }
+  .hero p{ color:var(--muted); font-size:1.08rem; margin-top:18px; max-width:560px; margin-left:auto; margin-right:auto; }
+  .hero-actions{ margin-top:32px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary{ background:var(--accent); color:#fff; padding:15px 30px; border-radius:11px; font-weight:700; text-decoration:none; font-size:0.95rem; }
+  .btn-secondary{ background:rgba(255,255,255,0.08); color:var(--text); padding:15px 30px; border-radius:11px; font-weight:700; text-decoration:none; font-size:0.95rem; }
+  .hero-note{ margin-top:16px; color:var(--muted); font-size:0.8rem; }
+
+  section{ padding:70px 0; }
+  .section-head{ text-align:center; max-width:560px; margin:0 auto 46px; }
+  .section-head .eyebrow{ display:block; margin-bottom:10px; }
+  .section-head h2{ font-size:clamp(1.6rem,3vw,2.1rem); }
+  .section-head p{ color:var(--muted); margin-top:12px; }
+
+  .grid-3{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .feature-card{ background:var(--card); border:1px solid rgba(255,255,255,0.06); border-radius:var(--radius); padding:28px; }
+  .feature-card .ic{ font-size:1.6rem; margin-bottom:14px; }
+  .feature-card h3{ font-size:1rem; margin-bottom:8px; }
+  .feature-card p{ color:var(--muted); font-size:0.87rem; line-height:1.55; }
+
+  .courses-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .course-card{ background:var(--card); border:1px solid rgba(255,255,255,0.06); border-radius:var(--radius); padding:28px; }
+  .course-card .icon{ font-size:2rem; margin-bottom:12px; }
+  .course-card h3{ font-size:1.05rem; margin-bottom:10px; }
+  .course-card p{ color:var(--muted); font-size:0.87rem; line-height:1.55; }
+
+  .cta-band{ background:linear-gradient(135deg, rgba(108,92,231,0.18), rgba(232,185,74,0.1)); border-radius:20px; padding:52px 5%; text-align:center; margin:0 5%; }
+  .cta-band h2{ font-size:clamp(1.5rem,3vw,2rem); margin-bottom:14px; }
+  .cta-band p{ color:var(--muted); margin-bottom:26px; }
+
+  footer{ padding:40px 5%; text-align:center; color:var(--muted); font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.05); margin-top:40px; }
+
+  @media (max-width:760px){
+    .grid-3{ grid-template-columns:1fr; }
+    .courses-grid{ grid-template-columns:1fr; }
+    .nav-links{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Tech<span>Flow Academy</span></div>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="vendas.html">Cursos</a>
+    <a href="#planos">Planos</a>
+  </div>
+  <a class="nav-cta" href="login.html">Entrar</a>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-inner">
+    <span class="eyebrow">6 Cursos Práticos · Do Zero ao Projeto Vendável</span>
+    <h1>Aprenda a criar e vender com IA — do vídeo ao website.</h1>
+    <p>6 cursos completos que te ensinam passo a passo como criar vídeos, automações, chatbots, SaaS, landing pages e sites — tudo pronto pra vender pro seu cliente no mesmo dia que termina.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="vendas.html">Ver cursos e preços</a>
+      <a class="btn-secondary" href="#cursos">Saiba mais</a>
+    </div>
+    <div class="hero-note">Acesso vitalício · Atualizações grátis para sempre · Agente IA 24h</div>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Por que TechFlow Academy</span>
+      <h2>Você não aprende só a usar IA. Você aprende a ganhar com ela.</h2>
+      <p>Cada curso sai com um projeto pronto pra vender. Você termina e já consegue cliente.</p>
+    </div>
+    <div class="grid-3">
+      <div class="feature-card">
+        <div class="ic">🎯</div>
+        <h3>Projeto ao final de cada curso</h3>
+        <p>Não é só teoria. Você cria algo real, pronto pra vender pro cliente.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic">📈</div>
+        <h3>Do zero até vender</h3>
+        <p>Começamos do básico e terminamos com você fechando sua primeira venda.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic">🔄</div>
+        <h3>Atualizações vitalícias</h3>
+        <p>IA muda todo dia. Você recebe novos conteúdos e ferramentas para sempre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cursos">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Cursos Inclusos</span>
+      <h2>6 cursos práticos, 6 projetos vendáveis</h2>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="icon">🎥</div>
+        <h3>Criação de Vídeos com IA</h3>
+        <p>Domine Veo3, Google Flow, Kling AI, Runway e CapCut AI. Crie vídeos cinematográficos para Reels, TikTok, YouTube e anúncios. Projeto final: seu portfólio pronto.</p>
+      </div>
+      <div class="course-card">
+        <div class="icon">🤖</div>
+        <h3>Agentes para WhatsApp</h3>
+        <p>Construa agentes de IA que vendem 24h automaticamente. Integre N8N, APIs e chatbots no WhatsApp. Projeto final: agente vendendo de verdade pra cliente.</p>
+      </div>
+      <div class="course-card">
+        <div class="icon">💬</div>
+        <h3>Chatbots com IA</h3>
+        <p>Crie chatbots inteligentes que respondem como humano. Integre em sites, WhatsApp e redes sociais. Projeto final: chatbot funcionando pra um cliente real.</p>
+      </div>
+      <div class="course-card">
+        <div class="icon">☁️</div>
+        <h3>Desenvolvimento SaaS</h3>
+        <p>Crie sua própria plataforma SaaS com Python, Django, Streamlit e banco de dados. Do protótipo até cobrar por assinatura. Projeto final: SaaS pronto pra vender.</p>
+      </div>
+      <div class="course-card">
+        <div class="icon">🌐</div>
+        <h3>Landing Pages com IA</h3>
+        <p>Design que converte. Aprenda copywriting com IA, estrutura psicológica e testes A/B. Projeto final: landing page vendendo de verdade.</p>
+      </div>
+      <div class="course-card">
+        <div class="icon">💻</div>
+        <h3>Sites Completos com IA</h3>
+        <p>HTML, CSS, JavaScript do zero. Crie sites modernos, responsivos e otimizados. Projeto final: site pronto pra cliente, com você cobrando por isso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Tudo Incluso</span>
+      <h2>Mais do que cursos. Uma carreira inteira.</h2>
+    </div>
+    <div class="grid-3">
+      <div class="feature-card">
+        <div class="ic">📚</div>
+        <h3>Biblioteca Premium</h3>
+        <p>500+ prompts prontos que você copia e cola nos seus projetos.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic">📁</div>
+        <h3>Templates e Códigos</h3>
+        <p>Landing pages prontas, sites, automações e sistemas completos pra adaptar.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic">🎁</div>
+        <h3>Agente IA 24h</h3>
+        <p>Dúvida? Basta chamar. Agente de IA responde suas perguntas a qualquer hora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="cta-band">
+    <h2>Pronto pra começar?</h2>
+    <p>Escolha entre cursos individuais ou o Pacote Completo — economize e aprenda tudo de uma vez.</p>
+    <a class="btn-primary" href="vendas.html">Ver cursos e planos →</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 TechFlow Academy — todos os direitos reservados
+</footer>
+
+</body>
+</html>

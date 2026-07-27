@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — Página não encontrada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0d14;
+        --card: #161b26;
+        --text: #f2f0ea;
+        --muted: #8b92a5;
+        --accent: #6c5ce7;
+        --accent-2: #e8b94a;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            50% 50% at 85% 15%,
+            rgba(108, 92, 231, 0.2),
+            transparent 60%
+          ),
+          radial-gradient(
+            40% 40% at 10% 90%,
+            rgba(232, 185, 74, 0.1),
+            transparent 60%
+          );
+      }
+
+      .wrap {
+        text-align: center;
+        max-width: 600px;
+        padding: 40px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .icon {
+        font-size: 7rem;
+        margin-bottom: 20px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      h1 {
+        font-family: "Sora";
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 14px;
+        letter-spacing: -0.02em;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: var(--muted);
+        margin-bottom: 40px;
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 28px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.9rem;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+      }
+
+      .error-code {
+        font-family: "Sora";
+        font-size: 0.85rem;
+        color: var(--accent-2);
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .decoration {
+        position: absolute;
+        font-size: 4rem;
+        opacity: 0.1;
+      }
+
+      .deco-1 {
+        top: 20px;
+        left: 20px;
+      }
+      .deco-2 {
+        bottom: 40px;
+        right: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="decoration deco-1">🚀</div>
+    <div class="decoration deco-2">💡</div>
+
+    <div class="wrap">
+      <div class="icon">🔍</div>
+
+      <div class="error-code">Erro 404</div>
+      <h1>Página não encontrada</h1>
+
+      <div class="subtitle">Oops! Essa página desapareceu.</div>
+
+      <p>
+        A página que você está procurando não existe ou foi movida. Mas não se
+        preocupe — você pode voltar pro início ou explorar nossos cursos.
+      </p>
+
+      <div class="buttons">
+        <a href="index.html" class="btn btn-primary">← Voltar ao Início</a>
+        <a href="vendas.html" class="btn btn-secondary">Ver Cursos</a>
+      </div>
+    </div>
+  </body>
+</html>

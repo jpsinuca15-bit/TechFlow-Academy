@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechFlow Academy — Área de Membros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0d14;
+        --bg-elev: #12161f;
+        --card: #161b26;
+        --text: #f2f0ea;
+        --muted: #8b92a5;
+        --accent: #6c5ce7;
+        --accent-2: #e8b94a;
+        --ring-bg: #232a3a;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Sora", sans-serif;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 5%;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: linear-gradient(
+          180deg,
+          rgba(10, 13, 20, 0.95) 0%,
+          rgba(10, 13, 20, 0.7) 70%,
+          transparent 100%
+        );
+        backdrop-filter: blur(6px);
+      }
+      .logo {
+        font-family: "Sora";
+        font-weight: 800;
+        font-size: 1.3rem;
+        letter-spacing: -0.02em;
+      }
+      .logo span {
+        color: var(--accent-2);
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .nav-right a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .nav-right a:hover {
+        color: var(--text);
+      }
+      .avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+
+      .hero {
+        position: relative;
+        padding: 40px 5% 60px;
+        min-height: 56vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            60% 60% at 80% 10%,
+            rgba(108, 92, 231, 0.35),
+            transparent 60%
+          ),
+          radial-gradient(
+            50% 50% at 10% 0%,
+            rgba(232, 185, 74, 0.15),
+            transparent 60%
+          );
+        z-index: 0;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: 620px;
+      }
+      .eyebrow {
+        color: var(--accent-2);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        display: block;
+      }
+      .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.2rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+      }
+      .hero p {
+        color: var(--muted);
+        margin-top: 16px;
+        font-size: 1.05rem;
+        max-width: 520px;
+      }
+      .hero-actions {
+        margin-top: 28px;
+        display: flex;
+        gap: 14px;
+      }
+      .btn-primary,
+      .btn-secondary {
+        padding: 13px 26px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          transform 0.15s ease,
+          opacity 0.15s ease;
+      }
+      .btn-primary {
+        background: var(--text);
+        color: var(--bg);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+      }
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--text);
+      }
+      .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      .rows {
+        padding: 10px 0 60px;
+      }
+      .row-block {
+        margin-bottom: 42px;
+      }
+      .row-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        padding: 0 5%;
+        margin-bottom: 14px;
+      }
+      .row-header h2 {
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+
+      .row-track {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        padding: 6px 5% 14px;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+      }
+      .row-track::-webkit-scrollbar {
+        display: none;
+      }
+
+      .card {
+        flex: 0 0 auto;
+        width: 250px;
+        background: var(--card);
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+        scroll-snap-align: start;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          border-color 0.25s ease;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+      .card:hover {
+        transform: translateY(-6px) scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        border-color: rgba(108, 92, 231, 0.5);
+      }
+      .card-thumb {
+        height: 140px;
+        background: linear-gradient(135deg, var(--bg-elev), #1b2130);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+      }
+      .card-thumb .course-num {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        font-family: "Sora";
+        font-weight: 800;
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .card-body {
+        padding: 14px 16px 16px;
+      }
+      .card-body h3 {
+        font-size: 0.98rem;
+        font-weight: 700;
+        line-height: 1.3;
+        margin-bottom: 6px;
+      }
+      .card-body p {
+        color: var(--muted);
+        font-size: 0.8rem;
+        line-height: 1.4;
+      }
+
+      .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px 16px;
+      }
+      .progress-ring-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .progress-ring {
+        width: 28px;
+        height: 28px;
+      }
+      .progress-ring circle {
+        fill: none;
+        stroke-width: 3;
+      }
+      .ring-bg {
+        stroke: var(--ring-bg);
+      }
+      .ring-fill {
+        stroke: var(--accent-2);
+        stroke-linecap: round;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+        transition: stroke-dashoffset 0.6s ease;
+      }
+      .progress-label {
+        font-size: 0.72rem;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .status-tag {
+        font-size: 0.68rem;
+        font-weight: 700;
+        padding: 4px 9px;
+        border-radius: 20px;
+        background: rgba(232, 185, 74, 0.12);
+        color: var(--accent-2);
+      }
+      .status-tag.locked {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--muted);
+      }
+
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(4, 5, 9, 0.75);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        padding: 20px;
+      }
+      .modal-overlay.active {
+        display: flex;
+      }
+      .modal {
+        background: var(--bg-elev);
+        border-radius: 18px;
+        max-width: 480px;
+        width: 100%;
+        padding: 32px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        animation: pop 0.25s ease;
+      }
+      @keyframes pop {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .modal h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+      }
+      .modal p {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.5;
+        margin-bottom: 22px;
+      }
+      .modal-actions {
+        display: flex;
+        gap: 12px;
+      }
+      .modal-close {
+        background: none;
+        border: none;
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 0.85rem;
+        margin-top: 16px;
+      }
+
+      @media (max-width: 640px) {
+        .card {
+          width: 200px;
+        }
+        .hero {
+          min-height: 44vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Tech<span>Flow Academy</span></div>
+      <div class="nav-right">
+        <a href="#">Meus cursos</a>
+        <a href="#">Comunidade</a>
+        <a href="#">Suporte</a>
+        <a href="perfil.html" style="text-decoration: none">
+          <div class="avatar">JP</div>
+        </a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">Bem-vindo à TechFlow Academy</span>
+        <h1>Aprenda, crie, venda com IA.</h1>
+        <p>
+          6 cursos práticos. Cada um com um projeto pronto pra vender pro
+          cliente. Tudo em um lugar, com suporte 24h.
+        </p>
+        <div class="hero-actions">
+          <a href="aula.html?a=1-1" class="btn-primary">▶ Começar agora</a>
+          <a href="#cursos" class="btn-secondary">Ver todos os cursos</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="rows" id="rows">
+      <!-- os cursos são gerados via JS abaixo -->
+    </main>
+
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal">
+        <h2 id="modalTitle">Título do curso</h2>
+        <p id="modalDesc">Descrição do curso aparece aqui.</p>
+        <div class="modal-actions">
+          <a href="#" class="btn-primary" id="modalCta">▶ Ver aulas</a>
+          <button class="btn-secondary" onclick="closeModal()">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const CURSOS = [
+        {
+          titulo: "Comece aqui",
+          cursos: [
+            {
+              icon: "🎥",
+              num: "01",
+              nome: "Criação de Vídeos com IA",
+              desc: "Domine Veo3, Google Flow, Kling AI, Runway e CapCut AI. Crie vídeos cinematográficos para Reels, TikTok, YouTube.",
+              progresso: 0,
+              status: "Comece",
+              href: "aula.html?a=1-1",
+            },
+            {
+              icon: "🤖",
+              num: "02",
+              nome: "Agentes para WhatsApp",
+              desc: "Construa agentes de IA que vendem automaticamente 24 horas no WhatsApp usando N8N.",
+              progresso: 0,
+              status: "Comece",
+              href: "aula.html?a=2-1",
+            },
+            {
+              icon: "💬",
+              num: "03",
+              nome: "Chatbots com IA",
+              desc: "Crie chatbots inteligentes que respondem como humano em WhatsApp, sites e redes sociais.",
+              progresso: 0,
+              status: "Comece",
+              href: "aula.html?a=3-1",
+            },
+          ],
+        },
+        {
+          titulo: "Todos os 6 cursos",
+          cursos: [
+            {
+              icon: "🎥",
+              num: "01",
+              nome: "Criação de Vídeos com IA",
+              desc: "Domine Veo3, Google Flow, Kling AI, Runway e CapCut AI. Crie vídeos cinematográficos para Reels, TikTok, YouTube.",
+              progresso: 0,
+              status: "Disponível",
+              href: "aula.html?a=1-1",
+            },
+            {
+              icon: "🤖",
+              num: "02",
+              nome: "Agentes para WhatsApp",
+              desc: "Construa agentes de IA que vendem automaticamente 24 horas no WhatsApp usando N8N.",
+              progresso: 0,
+              status: "Disponível",
+              href: "aula.html?a=2-1",
+            },
+            {
+              icon: "💬",
+              num: "03",
+              nome: "Chatbots com IA",
+              desc: "Crie chatbots inteligentes que respondem como humano em WhatsApp, sites e redes sociais.",
+              progresso: 0,
+              status: "Disponível",
+              href: "aula.html?a=3-1",
+            },
+            {
+              icon: "☁️",
+              num: "04",
+              nome: "Desenvolvimento SaaS",
+              desc: "Crie sua própria plataforma SaaS com Python, Django, Streamlit. Do protótipo até cobrar por assinatura.",
+              progresso: 0,
+              status: "Disponível",
+              href: "aula.html?a=4-1",
+            },
+            {
+              icon: "🌐",
+              num: "05",
+              nome: "Landing Pages com IA",
+              desc: "Design que converte. Copywriting, estrutura psicológica, testes A/B. Projeto pronto pra vender.",
+              progresso: 0,
+              status: "Disponível",
+              href: "aula.html?a=5-1",
+            },
+            {
+              icon: "💻",
+              num: "06",
+              nome: "Sites Completos com IA",
+              desc: "HTML, CSS, JavaScript do zero. Crie sites modernos, responsivos. Pronto pra cobrar do cliente.",
+              progresso: 0,
+              status: "Disponível",
+              href: "aula.html?a=6-1",
+            },
+          ],
+        },
+        {
+          titulo: "Bônus inclusos",
+          cursos: [
+            {
+              icon: "📚",
+              num: "—",
+              nome: "Biblioteca Premium",
+              desc: "500+ prompts prontos pra copiar e colar nos seus projetos.",
+              progresso: 0,
+              status: "Novo",
+              href: "aula.html?a=b-1",
+            },
+            {
+              icon: "📁",
+              num: "—",
+              nome: "Templates e Códigos",
+              desc: "Landing pages, sites, automações e sistemas completos prontos.",
+              progresso: 0,
+              status: "Novo",
+              href: "aula.html?a=b-2",
+            },
+            {
+              icon: "🎁",
+              num: "—",
+              nome: "Agente IA 24h",
+              desc: "Dúvida? Agente de IA responde a qualquer hora do dia ou da noite.",
+              progresso: 0,
+              status: "Novo",
+              href: "aula.html?a=b-3",
+            },
+          ],
+        },
+      ];
+
+      const ROWS = document.getElementById("rows");
+
+      function ringSVG(progresso) {
+        const r = 12,
+          c = 2 * Math.PI * r;
+        const offset = c - (progresso / 100) * c;
+        return `
+    <svg class="progress-ring" viewBox="0 0 28 28">
+      <circle class="ring-bg" cx="14" cy="14" r="${r}"></circle>
+      <circle class="ring-fill" cx="14" cy="14" r="${r}" stroke-dasharray="${c}" stroke-dashoffset="${offset}"></circle>
+    </svg>`;
+      }
+
+      function cardHTML(m, idx) {
+        return `
+    <a class="card" href="javascript:void(0)" onclick="openModal(${idx})">
+      <div class="card-thumb">
+        <span class="course-num">${m.num}</span>
+        <span>${m.icon}</span>
+      </div>
+      <div class="card-body">
+        <h3>${m.nome}</h3>
+        <p>${m.desc}</p>
+      </div>
+      <div class="card-footer">
+        <div class="progress-ring-wrap">
+          ${ringSVG(m.progresso)}
+          <span class="progress-label">${m.progresso}%</span>
+        </div>
+        <span class="status-tag">${m.status}</span>
+      </div>
+    </a>`;
+      }
+
+      let FLAT_CURSOS = [];
+
+      CURSOS.forEach((bloco) => {
+        const block = document.createElement("div");
+        block.className = "row-block";
+        const trackId = "track-" + Math.random().toString(36).slice(2, 7);
+
+        block.innerHTML = `
+    <div class="row-header">
+      <h2>${bloco.titulo}</h2>
+    </div>
+    <div class="row-track" id="${trackId}"></div>
+  `;
+        ROWS.appendChild(block);
+
+        const track = block.querySelector(".row-track");
+        bloco.cursos.forEach((m) => {
+          const idx = FLAT_CURSOS.length;
+          FLAT_CURSOS.push(m);
+          track.insertAdjacentHTML("beforeend", cardHTML(m, idx));
+        });
+      });
+
+      function openModal(idx) {
+        const m = FLAT_CURSOS[idx];
+        document.getElementById("modalTitle").innerText = m.nome;
+        document.getElementById("modalDesc").innerText = m.desc;
+        const cta = document.getElementById("modalCta");
+        cta.href = m.href;
+        cta.innerText = "▶ Ver aulas";
+        document.getElementById("modalOverlay").classList.add("active");
+      }
+      function closeModal() {
+        document.getElementById("modalOverlay").classList.remove("active");
+      }
+      document.getElementById("modalOverlay").addEventListener("click", (e) => {
+        if (e.target.id === "modalOverlay") closeModal();
+      });
+    </script>
+  </body>
+</html>

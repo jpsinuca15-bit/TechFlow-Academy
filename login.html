@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechFlow Academy — Entrar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0d14;
+        --bg-elev: #12161f;
+        --card: #161b26;
+        --text: #f2f0ea;
+        --muted: #8b92a5;
+        --accent: #6c5ce7;
+        --accent-2: #e8b94a;
+        --danger: #e86a6a;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        -webkit-font-smoothing: antialiased;
+        position: relative;
+        overflow: hidden;
+      }
+      h1,
+      .display {
+        font-family: "Sora", sans-serif;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        background:
+          radial-gradient(
+            50% 50% at 85% 15%,
+            rgba(108, 92, 231, 0.28),
+            transparent 60%
+          ),
+          radial-gradient(
+            40% 40% at 10% 90%,
+            rgba(232, 185, 74, 0.14),
+            transparent 60%
+          );
+      }
+
+      .brand-side {
+        flex: 1.1;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 48px 5%;
+      }
+      .logo {
+        font-family: "Sora";
+        font-weight: 800;
+        font-size: 1.4rem;
+      }
+      .logo span {
+        color: var(--accent-2);
+      }
+      .brand-copy h1 {
+        font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        max-width: 480px;
+      }
+      .brand-copy p {
+        color: var(--muted);
+        margin-top: 14px;
+        max-width: 420px;
+        font-size: 0.98rem;
+      }
+      .brand-foot {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .form-side {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 5%;
+      }
+      .auth-card {
+        width: 100%;
+        max-width: 400px;
+        background: var(--bg-elev);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: var(--radius);
+        padding: 34px;
+      }
+      .switch {
+        display: flex;
+        background: var(--card);
+        border-radius: 10px;
+        padding: 4px;
+        margin-bottom: 26px;
+      }
+      .switch button {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .switch button.active {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      label {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-bottom: 6px;
+        display: block;
+      }
+      input {
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 9px;
+        margin-bottom: 16px;
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--text);
+        font-size: 0.9rem;
+        font-family: "Inter";
+      }
+      input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 13px;
+        border: none;
+        border-radius: 10px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        font-size: 0.92rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        margin-top: 4px;
+      }
+      .submit-btn:hover {
+        opacity: 0.88;
+      }
+      .submit-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .msg {
+        font-size: 0.82rem;
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 8px;
+        display: none;
+      }
+      .msg.error {
+        background: rgba(232, 106, 106, 0.12);
+        color: var(--danger);
+        display: block;
+      }
+      .msg.success {
+        background: rgba(76, 209, 155, 0.12);
+        color: #4cd19b;
+        display: block;
+      }
+
+      .forgot {
+        text-align: right;
+        margin: -8px 0 18px;
+      }
+      .forgot a {
+        font-size: 0.78rem;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      .forgot a:hover {
+        color: var(--text);
+      }
+
+      @media (max-width: 860px) {
+        body {
+          flex-direction: column;
+        }
+        .brand-side {
+          padding: 32px 6% 20px;
+        }
+        .brand-foot {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="brand-side">
+      <div class="logo">Tech<span>Flow Academy</span></div>
+      <div class="brand-copy">
+        <h1>Aprenda a criar e vender com IA.</h1>
+        <p>
+          6 cursos completos, do vídeo ao website. Cada um com um projeto pronto
+          pra vender pro cliente.
+        </p>
+      </div>
+      <div class="brand-foot">
+        © 2026 TechFlow Academy — todos os direitos reservados
+      </div>
+    </div>
+
+    <div class="form-side">
+      <div class="auth-card">
+        <div class="switch">
+          <button id="btnLogin" class="active" onclick="setMode('login')">
+            Entrar
+          </button>
+          <button id="btnSignup" onclick="setMode('signup')">
+            Criar conta
+          </button>
+        </div>
+
+        <form id="authForm" onsubmit="return handleSubmit(event);">
+          <div id="nameField" style="display: none">
+            <label for="name">Nome completo</label>
+            <input type="text" id="name" placeholder="Seu nome" />
+          </div>
+
+          <label for="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="voce@email.com"
+            required
+          />
+
+          <label for="password">Senha</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="••••••••"
+            required
+            minlength="6"
+          />
+
+          <div class="forgot" id="forgotWrap">
+            <a href="javascript:void(0)" onclick="resetPassword()"
+              >Esqueci minha senha</a
+            >
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Entrar
+          </button>
+
+          <div class="msg" id="msgBox"></div>
+        </form>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const SUPABASE_URL = "COLE_AQUI_SUA_URL_DO_SUPABASE";
+      const SUPABASE_ANON_KEY = "COLE_AQUI_SUA_CHAVE_ANON_DO_SUPABASE";
+      const supabase = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY,
+      );
+
+      let mode = "login";
+
+      function setMode(m) {
+        mode = m;
+        document
+          .getElementById("btnLogin")
+          .classList.toggle("active", m === "login");
+        document
+          .getElementById("btnSignup")
+          .classList.toggle("active", m === "signup");
+        document.getElementById("nameField").style.display =
+          m === "signup" ? "block" : "none";
+        document.getElementById("forgotWrap").style.display =
+          m === "login" ? "block" : "none";
+        document.getElementById("submitBtn").innerText =
+          m === "login" ? "Entrar" : "Criar minha conta";
+        hideMsg();
+      }
+
+      function showMsg(text, type) {
+        const box = document.getElementById("msgBox");
+        box.innerText = text;
+        box.className = "msg " + type;
+      }
+      function hideMsg() {
+        const box = document.getElementById("msgBox");
+        box.className = "msg";
+        box.innerText = "";
+      }
+
+      async function handleSubmit(e) {
+        e.preventDefault();
+        hideMsg();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const btn = document.getElementById("submitBtn");
+        btn.disabled = true;
+
+        try {
+          if (mode === "signup") {
+            const name = document.getElementById("name").value.trim();
+            const { data, error } = await supabase.auth.signUp({
+              email,
+              password,
+              options: { data: { full_name: name } },
+            });
+            if (error) throw error;
+            showMsg(
+              "Conta criada! Verifica seu e-mail pra confirmar o cadastro.",
+              "success",
+            );
+          } else {
+            const { data, error } = await supabase.auth.signInWithPassword({
+              email,
+              password,
+            });
+            if (error) throw error;
+            showMsg("Login feito! Redirecionando...", "success");
+            setTimeout(() => {
+              window.location.href = "membros.html";
+            }, 800);
+          }
+        } catch (err) {
+          showMsg(traduzErro(err.message), "error");
+        } finally {
+          btn.disabled = false;
+        }
+        return false;
+      }
+
+      async function resetPassword() {
+        const email = document.getElementById("email").value.trim();
+        if (!email) {
+          showMsg("Digita seu e-mail no campo acima primeiro.", "error");
+          return;
+        }
+        const { error } = await supabase.auth.resetPasswordForEmail(email);
+        if (error) {
+          showMsg(traduzErro(error.message), "error");
+          return;
+        }
+        showMsg("Te mandamos um link de recuperação por e-mail.", "success");
+      }
+
+      function traduzErro(msg) {
+        const mapa = {
+          "Invalid login credentials": "E-mail ou senha incorretos.",
+          "User already registered":
+            "Esse e-mail já tem cadastro. Tenta entrar.",
+          "Password should be at least 6 characters":
+            "A senha precisa ter no mínimo 6 caracteres.",
+        };
+        return mapa[msg] || msg;
+      }
+    </script>
+  </body>
+</html>

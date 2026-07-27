@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechFlow Academy — Aula</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0d14;
+        --bg-elev: #12161f;
+        --card: #161b26;
+        --text: #f2f0ea;
+        --muted: #8b92a5;
+        --accent: #6c5ce7;
+        --accent-2: #e8b94a;
+        --ring-bg: #232a3a;
+        --radius: 14px;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Sora", sans-serif;
+      }
+
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 5%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .logo {
+        font-family: "Sora";
+        font-weight: 800;
+        font-size: 1.25rem;
+      }
+      .logo span {
+        color: var(--accent-2);
+      }
+      .back-link {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.88rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .back-link:hover {
+        color: var(--text);
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 0;
+        min-height: calc(100vh - 66px);
+      }
+
+      .main {
+        padding: 28px 4%;
+      }
+      .player {
+        width: 100%;
+        aspect-ratio: 16/9;
+        background: linear-gradient(135deg, var(--bg-elev), #1b2130);
+        border-radius: var(--radius);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .play-btn {
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.6rem;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+      .play-btn:hover {
+        transform: scale(1.08);
+        background: rgba(255, 255, 255, 0.18);
+      }
+      .player-hint {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      .lesson-header {
+        margin-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .lesson-header h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        max-width: 560px;
+      }
+      .lesson-meta {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-top: 8px;
+      }
+      .mark-done {
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 0.88rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity 0.2s;
+      }
+      .mark-done:hover {
+        opacity: 0.85;
+      }
+      .mark-done.done {
+        background: rgba(76, 209, 155, 0.15);
+        color: #4cd19b;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 24px;
+        margin-top: 28px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .tab {
+        padding-bottom: 12px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        border-bottom: 2px solid transparent;
+      }
+      .tab.active {
+        color: var(--text);
+        border-color: var(--accent);
+      }
+      .tab-content {
+        padding: 22px 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.7;
+        max-width: 640px;
+      }
+      .tab-content strong {
+        color: var(--text);
+      }
+
+      .lesson-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+        gap: 12px;
+      }
+      .lesson-nav a {
+        flex: 1;
+        padding: 14px 18px;
+        border-radius: 10px;
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        text-decoration: none;
+        color: var(--text);
+        font-size: 0.85rem;
+        transition: border-color 0.2s;
+      }
+      .lesson-nav a:hover {
+        border-color: var(--accent);
+      }
+      .lesson-nav .lbl {
+        color: var(--muted);
+        font-size: 0.72rem;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .lesson-nav .next {
+        text-align: right;
+      }
+
+      .sidebar {
+        background: var(--bg-elev);
+        border-left: 1px solid rgba(255, 255, 255, 0.06);
+        padding: 24px 20px;
+        overflow-y: auto;
+        max-height: calc(100vh - 66px);
+        position: sticky;
+        top: 66px;
+      }
+      .sidebar h3 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+      }
+      .sidebar .course-progress {
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-bottom: 18px;
+      }
+      .course-group {
+        margin-bottom: 18px;
+      }
+      .course-group summary {
+        cursor: pointer;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--text);
+      }
+      .course-group summary::-webkit-details-marker {
+        display: none;
+      }
+      .course-group summary .chev {
+        color: var(--muted);
+        transition: transform 0.2s;
+        font-size: 0.75rem;
+      }
+      .course-group[open] summary .chev {
+        transform: rotate(90deg);
+      }
+
+      .aula-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 8px;
+        border-radius: 8px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .aula-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+      }
+      .aula-item.current {
+        background: rgba(108, 92, 231, 0.15);
+        color: var(--text);
+        border-left: 2px solid var(--accent);
+      }
+      .aula-item .check {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1.5px solid var(--muted);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.6rem;
+      }
+      .aula-item.done .check {
+        background: var(--accent-2);
+        border-color: var(--accent-2);
+        color: #0a0d14;
+      }
+      .aula-item .dur {
+        margin-left: auto;
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
+
+      @media (max-width: 880px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+          max-height: none;
+          border-left: none;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">Tech<span>Flow Academy</span></div>
+      <a class="back-link" href="membros.html">← Voltar pra seus cursos</a>
+    </nav>
+
+    <div class="layout">
+      <main class="main">
+        <div class="player">
+          <div
+            class="play-btn"
+            onclick="
+              alert(
+                'Aqui entra seu player de vídeo real (YouTube, Vimeo, Panda Video etc)',
+              )
+            "
+          >
+            ▶
+          </div>
+          <span class="player-hint"
+            >Placeholder — troque pelo embed do seu vídeo</span
+          >
+        </div>
+
+        <div class="lesson-header">
+          <div>
+            <h1 id="lessonTitle">Carregando aula...</h1>
+            <div class="lesson-meta" id="lessonMeta"></div>
+          </div>
+          <button class="mark-done" id="markDoneBtn" onclick="toggleDone()">
+            ✓ Marcar como concluída
+          </button>
+        </div>
+
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab(this, 'desc')">
+            Descrição
+          </div>
+          <div class="tab" onclick="switchTab(this, 'materiais')">
+            Materiais
+          </div>
+          <div class="tab" onclick="switchTab(this, 'duvidas')">Dúvidas</div>
+        </div>
+
+        <div class="tab-content" id="tab-desc">
+          <p id="lessonDesc">—</p>
+        </div>
+        <div class="tab-content" id="tab-materiais" style="display: none">
+          <p>
+            <strong>Materiais de apoio</strong> desta aula — PDFs, planilhas,
+            links de referência aparecem aqui.
+          </p>
+        </div>
+        <div class="tab-content" id="tab-duvidas" style="display: none">
+          <p>
+            Espaço pra dúvidas e comentários. Acesse a comunidade exclusiva ou
+            fale com nosso agente IA 24h.
+          </p>
+        </div>
+
+        <div class="lesson-nav">
+          <a href="javascript:void(0)" id="prevBtn"
+            ><span class="lbl">← Anterior</span><span id="prevLabel">—</span></a
+          >
+          <a href="javascript:void(0)" id="nextBtn" class="next"
+            ><span class="lbl">Próxima →</span><span id="nextLabel">—</span></a
+          >
+        </div>
+      </main>
+
+      <aside class="sidebar">
+        <h3>Seus cursos</h3>
+        <div class="course-progress" id="courseProgress">
+          0 de 0 aulas concluídas
+        </div>
+        <div id="courseList"></div>
+      </aside>
+    </div>
+
+    <script>
+      const CURSOS = [
+        {
+          curso: "01 · Criação de Vídeos com IA",
+          aulas: [
+            {
+              id: "1-1",
+              nome: "Veo3 - Gerando vídeos 4K do zero",
+              dur: "18min",
+              desc: "Aprenda a usar o Veo3 pra criar vídeos cinematográficos em minutos.",
+            },
+            {
+              id: "1-2",
+              nome: "Google Flow - Prompts que funcionam",
+              dur: "15min",
+              desc: "Estruture prompts de vídeo que geram resultados profissionais.",
+            },
+            {
+              id: "1-3",
+              nome: "Kling AI e Runway - Efeitos e transições",
+              dur: "16min",
+              desc: "Adicione efeitos profissionais aos seus vídeos com IA.",
+            },
+            {
+              id: "1-4",
+              nome: "CapCut AI - Edição rápida",
+              dur: "14min",
+              desc: "Edite vídeos inteiros em minutos com CapCut AI.",
+            },
+            {
+              id: "1-5",
+              nome: "Seu projeto: Portfólio de vídeos",
+              dur: "20min",
+              desc: "Crie 5 vídeos prontos pra vender ao cliente.",
+            },
+          ],
+        },
+        {
+          curso: "02 · Agentes para WhatsApp",
+          aulas: [
+            {
+              id: "2-1",
+              nome: "N8N - Setup completo",
+              dur: "22min",
+              desc: "Configure o N8N pra conectar WhatsApp com IA.",
+            },
+            {
+              id: "2-2",
+              nome: "Agente que vende",
+              dur: "20min",
+              desc: "Crie um agente que recebe leads no WhatsApp e fecha venda automaticamente.",
+            },
+            {
+              id: "2-3",
+              nome: "Integrações e APIs",
+              dur: "18min",
+              desc: "Conecte seu agente ao CRM, e-mail e sistemas de pagamento.",
+            },
+            {
+              id: "2-4",
+              nome: "Seu projeto: Agente vendedor",
+              dur: "25min",
+              desc: "Deploy do seu agente rodando 24h vendendo pro cliente.",
+            },
+          ],
+        },
+        {
+          curso: "03 · Chatbots com IA",
+          aulas: [
+            {
+              id: "3-1",
+              nome: "ChatGPT API - Chatbots inteligentes",
+              dur: "16min",
+              desc: "Configure um chatbot que parece humano.",
+            },
+            {
+              id: "3-2",
+              nome: "WhatsApp + Chatbot",
+              dur: "18min",
+              desc: "Integre seu chatbot no WhatsApp.",
+            },
+            {
+              id: "3-3",
+              nome: "Sites + Chatbot",
+              dur: "17min",
+              desc: "Adicione chatbot ao seu site de vendas.",
+            },
+            {
+              id: "3-4",
+              nome: "Seu projeto: Chatbot funcionando",
+              dur: "19min",
+              desc: "Deploy e teste com clientes reais.",
+            },
+          ],
+        },
+        {
+          curso: "04 · Desenvolvimento SaaS",
+          aulas: [
+            {
+              id: "4-1",
+              nome: "Python + Django - Backend",
+              dur: "24min",
+              desc: "Aprenda o essencial de Python e Django pra SaaS.",
+            },
+            {
+              id: "4-2",
+              nome: "Banco de dados - SQLite",
+              dur: "20min",
+              desc: "Estruture dados como profissional.",
+            },
+            {
+              id: "4-3",
+              nome: "Streamlit - Frontend rápido",
+              dur: "18min",
+              desc: "Crie interface de usuário sem HTML/CSS.",
+            },
+            {
+              id: "4-4",
+              nome: "Seu projeto: SaaS completo",
+              dur: "30min",
+              desc: "Do protótipo ao deploy. Pronto pra cobrar.",
+            },
+          ],
+        },
+        {
+          curso: "05 · Landing Pages com IA",
+          aulas: [
+            {
+              id: "5-1",
+              nome: "Copywriting com IA",
+              dur: "16min",
+              desc: "Gere textos de vendas que convertem.",
+            },
+            {
+              id: "5-2",
+              nome: "Estrutura psicológica",
+              dur: "15min",
+              desc: "Organize sua landing page pra vender mais.",
+            },
+            {
+              id: "5-3",
+              nome: "Design + Conversão",
+              dur: "17min",
+              desc: "Design clean que não distrai, só vende.",
+            },
+            {
+              id: "5-4",
+              nome: "Seu projeto: Landing pronta",
+              dur: "18min",
+              desc: "Landing page gerando vendas no dia 1.",
+            },
+          ],
+        },
+        {
+          curso: "06 · Sites Completos com IA",
+          aulas: [
+            {
+              id: "6-1",
+              nome: "HTML - Estrutura",
+              dur: "18min",
+              desc: "Aprenda HTML do zero.",
+            },
+            {
+              id: "6-2",
+              nome: "CSS - Estilo profissional",
+              dur: "20min",
+              desc: "Crie designs modernos com CSS puro.",
+            },
+            {
+              id: "6-3",
+              nome: "JavaScript - Interatividade",
+              dur: "22min",
+              desc: "Adicione funcionalidades incríveis.",
+            },
+            {
+              id: "6-4",
+              nome: "Seu projeto: Site completo",
+              dur: "25min",
+              desc: "Site rodando, otimizado, pronto pro cliente pagar.",
+            },
+          ],
+        },
+      ];
+
+      let PROGRESSO = {};
+      const FLAT = [];
+
+      CURSOS.forEach((cur, ci) =>
+        cur.aulas.forEach((a, ai) => FLAT.push({ ...a, cursoIndex: ci })),
+      );
+
+      function getParam(name) {
+        return new URLSearchParams(window.location.search).get(name);
+      }
+
+      function currentLessonId() {
+        return getParam("a") || FLAT[0].id;
+      }
+
+      function renderSidebar() {
+        const list = document.getElementById("courseList");
+        list.innerHTML = "";
+        const curId = currentLessonId();
+
+        CURSOS.forEach((cur, ci) => {
+          const isOpenCourse = cur.aulas.some((a) => a.id === curId);
+          const details = document.createElement("details");
+          details.className = "course-group";
+          if (isOpenCourse) details.open = true;
+
+          const aulasHTML = cur.aulas
+            .map((a) => {
+              const done = !!PROGRESSO[a.id];
+              const isCurrent = a.id === curId;
+              return `
+        <a class="aula-item ${isCurrent ? "current" : ""} ${done ? "done" : ""}" href="aula.html?a=${a.id}">
+          <span class="check">${done ? "✓" : ""}</span>
+          <span>${a.nome}</span>
+          <span class="dur">${a.dur}</span>
+        </a>`;
+            })
+            .join("");
+
+          details.innerHTML = `<summary>${cur.curso}<span class="chev">▸</span></summary>${aulasHTML}`;
+          list.appendChild(details);
+        });
+
+        const total = FLAT.length;
+        const feitas = FLAT.filter((a) => PROGRESSO[a.id]).length;
+        document.getElementById("courseProgress").innerText =
+          `${feitas} de ${total} aulas concluídas`;
+      }
+
+      function renderLesson() {
+        const curId = currentLessonId();
+        const idx = FLAT.findIndex((a) => a.id === curId);
+        const lesson = FLAT[idx] || FLAT[0];
+
+        document.getElementById("lessonTitle").innerText = lesson.nome;
+        document.getElementById("lessonDesc").innerText = lesson.desc;
+        document.getElementById("lessonMeta").innerText =
+          `${CURSOS[lesson.cursoIndex].curso} · ${lesson.dur}`;
+
+        const btn = document.getElementById("markDoneBtn");
+        const done = !!PROGRESSO[lesson.id];
+        btn.classList.toggle("done", done);
+        btn.innerText = done ? "✓ Aula concluída" : "✓ Marcar como concluída";
+
+        const prev = FLAT[idx - 1];
+        const next = FLAT[idx + 1];
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        if (prev) {
+          prevBtn.href = `aula.html?a=${prev.id}`;
+          document.getElementById("prevLabel").innerText = prev.nome;
+          prevBtn.style.visibility = "visible";
+        } else {
+          prevBtn.style.visibility = "hidden";
+        }
+        if (next) {
+          nextBtn.href = `aula.html?a=${next.id}`;
+          document.getElementById("nextLabel").innerText = next.nome;
+          nextBtn.style.visibility = "visible";
+        } else {
+          nextBtn.style.visibility = "hidden";
+        }
+      }
+
+      function toggleDone() {
+        const id = currentLessonId();
+        PROGRESSO[id] = !PROGRESSO[id];
+        renderLesson();
+        renderSidebar();
+      }
+
+      function switchTab(el, tab) {
+        document
+          .querySelectorAll(".tab")
+          .forEach((t) => t.classList.remove("active"));
+        el.classList.add("active");
+        ["desc", "materiais", "duvidas"].forEach((t) => {
+          document.getElementById("tab-" + t).style.display =
+            t === tab ? "block" : "none";
+        });
+      }
+
+      renderLesson();
+      renderSidebar();
+    </script>
+  </body>
+</html>
