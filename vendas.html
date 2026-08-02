@@ -1,473 +1,210 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechFlow Academy — Cursos e Planos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg: #0a0d14;
-        --bg-elev: #12161f;
-        --card: #161b26;
-        --text: #f2f0ea;
-        --muted: #8b92a5;
-        --accent: #6c5ce7;
-        --accent-2: #e8b94a;
-        --radius: 14px;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        background: var(--bg);
-        color: var(--text);
-        font-family: "Inter", sans-serif;
-        -webkit-font-smoothing: antialiased;
-      }
-      h1,
-      h2,
-      h3 {
-        font-family: "Sora", sans-serif;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechFlow Academy — Cursos e Planos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0D14; --bg-elev:#12161F; --card:#161B26; --text:#F2F0EA; --muted:#8B92A5;
+    --accent:#6C5CE7; --accent-2:#E8B94A; --radius:14px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Sora',sans-serif; }
+  a{ color:inherit; text-decoration:none; }
 
-      nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 5%;
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        background: rgba(10, 13, 20, 0.85);
-        backdrop-filter: blur(8px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      .logo {
-        font-weight: 800;
-        font-size: 1.25rem;
-        font-family: "Sora";
-      }
-      .logo span {
-        color: var(--accent-2);
-      }
-      .nav-links {
-        display: flex;
-        gap: 20px;
-      }
-      .nav-links a {
-        color: var(--muted);
-        font-size: 0.9rem;
-        transition: color 0.2s;
-      }
-      .nav-links a:hover {
-        color: var(--text);
-      }
-      .nav-cta {
-        background: var(--text);
-        color: var(--bg);
-        padding: 10px 20px;
-        border-radius: 9px;
-        font-weight: 700;
-        font-size: 0.85rem;
-      }
+  nav{ display:flex; align-items:center; justify-content:space-between; padding:20px 5%; position:sticky; top:0; z-index:50; background:rgba(10,13,20,0.85); backdrop-filter:blur(8px); border-bottom:1px solid rgba(255,255,255,0.05); }
+  .logo{ font-weight:800; font-size:1.25rem; font-family:'Sora'; }
+  .logo span{ color:var(--accent-2); }
+  .nav-links{ display:flex; gap:20px; }
+  .nav-links a{ color:var(--muted); font-size:0.9rem; transition: color 0.2s; }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{ background:var(--text); color:var(--bg); padding:10px 20px; border-radius:9px; font-weight:700; font-size:0.85rem; }
 
-      .head {
-        text-align: center;
-        padding: 56px 5% 40px;
-      }
-      .eyebrow {
-        color: var(--accent-2);
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-      .head h1 {
-        font-size: clamp(1.9rem, 4vw, 2.6rem);
-        margin-top: 14px;
-        letter-spacing: -0.02em;
-      }
-      .head p {
-        color: var(--muted);
-        margin-top: 12px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-      }
+  .head{ text-align:center; padding:56px 5% 40px; }
+  .eyebrow{ color:var(--accent-2); font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; }
+  .head h1{ font-size:clamp(1.9rem,4vw,2.6rem); margin-top:14px; letter-spacing:-0.02em; }
+  .head p{ color:var(--muted); margin-top:12px; max-width:600px; margin-left:auto; margin-right:auto; }
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 5%;
-      }
+  .container{ max-width:1200px; margin:0 auto; padding:0 5%; }
 
-      .cursos-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin-bottom: 80px;
-      }
-      .curso-card {
-        background: var(--card);
-        border: 1px solid rgba(255, 255, 255, 0.06);
-        border-radius: var(--radius);
-        padding: 28px;
-        display: flex;
-        flex-direction: column;
-      }
-      .curso-card .icon {
-        font-size: 2.4rem;
-        margin-bottom: 14px;
-      }
-      .curso-card h3 {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-      }
-      .curso-card .desc {
-        color: var(--muted);
-        font-size: 0.87rem;
-        line-height: 1.55;
-        margin-bottom: 18px;
-        flex: 1;
-      }
-      .curso-card .price {
-        font-family: "Sora";
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: var(--accent-2);
-        margin-bottom: 20px;
-      }
-      .curso-card .cta {
-        display: block;
-        text-align: center;
-        padding: 12px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.08);
-        color: var(--text);
-        font-weight: 700;
-        font-size: 0.9rem;
-        transition: opacity 0.2s;
-      }
-      .curso-card .cta:hover {
-        opacity: 0.8;
-      }
+  .cursos-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:80px; }
+  .curso-card{ background:var(--card); border:1px solid rgba(255,255,255,0.06); border-radius:var(--radius); padding:28px; display:flex; flex-direction:column; }
+  .curso-card .icon{ font-size:2.4rem; margin-bottom:14px; }
+  .curso-card h3{ font-size:1.1rem; margin-bottom:10px; }
+  .curso-card .desc{ color:var(--muted); font-size:0.87rem; line-height:1.55; margin-bottom:18px; flex:1; }
+  .curso-card .price{ font-family:'Sora'; font-size:1.8rem; font-weight:800; color:var(--accent-2); margin-bottom:20px; }
+  .curso-card .cta{ display:block; text-align:center; padding:12px; border-radius:10px; background:rgba(255,255,255,0.08); color:var(--text); font-weight:700; font-size:0.9rem; transition: opacity 0.2s; }
+  .curso-card .cta:hover{ opacity:0.8; }
 
-      .divider {
-        text-align: center;
-        margin: 60px 0 80px;
-      }
-      .divider p {
-        color: var(--muted);
-        font-size: 0.95rem;
-        font-weight: 600;
-      }
+  .divider{ text-align:center; margin:60px 0 80px; }
+  .divider p{ color:var(--muted); font-size:0.95rem; font-weight:600; }
 
-      .pacote-hero {
-        background: linear-gradient(
-          135deg,
-          rgba(108, 92, 231, 0.2),
-          rgba(232, 185, 74, 0.1)
-        );
-        border-radius: 20px;
-        padding: 60px 5%;
-        margin: 0 5% 60px;
-        text-align: center;
-        position: relative;
-      }
-      .pacote-hero::before {
-        content: "⭐";
-        position: absolute;
-        top: 20px;
-        left: 30px;
-        font-size: 2rem;
-        opacity: 0.5;
-      }
-      .pacote-hero::after {
-        content: "⭐";
-        position: absolute;
-        bottom: 20px;
-        right: 30px;
-        font-size: 2rem;
-        opacity: 0.5;
-      }
-      .pacote-hero h2 {
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
-        margin-bottom: 16px;
-        letter-spacing: -0.02em;
-      }
-      .pacote-hero .subtitle {
-        color: var(--muted);
-        font-size: 1rem;
-        margin-bottom: 28px;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .pacote-price {
-        font-family: "Sora";
-        font-size: 3.2rem;
-        font-weight: 800;
-        color: var(--accent-2);
-        margin-bottom: 8px;
-      }
-      .pacote-economia {
-        color: var(--accent-2);
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin-bottom: 32px;
-      }
-      .pacote-includes {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        margin: 32px auto;
-        max-width: 800px;
-        text-align: left;
-      }
-      .include-item {
-        display: flex;
-        gap: 12px;
-      }
-      .include-item .check {
-        color: var(--accent-2);
-        font-weight: 800;
-        font-size: 1.2rem;
-        flex-shrink: 0;
-      }
-      .include-item p {
-        color: var(--muted);
-        font-size: 0.85rem;
-      }
-      .pacote-cta {
-        display: inline-block;
-        background: var(--accent);
-        color: #fff;
-        padding: 16px 40px;
-        border-radius: 11px;
-        font-weight: 700;
-        font-size: 0.95rem;
-      }
-      .pacote-cta:hover {
-        opacity: 0.88;
-      }
+  .pacote-hero{ background:linear-gradient(135deg, rgba(108,92,231,0.2), rgba(232,185,74,0.1)); border-radius:20px; padding:60px 5%; margin:0 5% 60px; text-align:center; position:relative; }
+  .pacote-hero::before{ content:"⭐"; position:absolute; top:20px; left:30px; font-size:2rem; opacity:0.5; }
+  .pacote-hero::after{ content:"⭐"; position:absolute; bottom:20px; right:30px; font-size:2rem; opacity:0.5; }
+  .pacote-hero h2{ font-size:clamp(1.8rem,3vw,2.4rem); margin-bottom:16px; letter-spacing:-0.02em; }
+  .pacote-hero .subtitle{ color:var(--muted); font-size:1rem; margin-bottom:28px; max-width:700px; margin-left:auto; margin-right:auto; }
+  .pacote-price{ font-family:'Sora'; font-size:3.2rem; font-weight:800; color:var(--accent-2); margin-bottom:8px; }
+  .pacote-economia{ color:var(--accent-2); font-size:0.9rem; font-weight:600; margin-bottom:32px; }
+  .pacote-includes{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:32px auto; max-width:800px; text-align:left; }
+  .include-item{ display:flex; gap:12px; }
+  .include-item .check{ color:var(--accent-2); font-weight:800; font-size:1.2rem; flex-shrink:0; }
+  .include-item p{ color:var(--muted); font-size:0.85rem; }
+  .pacote-cta{ display:inline-block; background:var(--accent); color:#fff; padding:16px 40px; border-radius:11px; font-weight:700; font-size:0.95rem; }
+  .pacote-cta:hover{ opacity:0.88; }
 
-      .guarantee {
-        text-align: center;
-        color: var(--muted);
-        font-size: 0.85rem;
-        margin-top: 40px;
-      }
+  .guarantee{ text-align:center; color:var(--muted); font-size:0.85rem; margin-top:40px; }
 
-      footer {
-        padding: 40px 5%;
-        text-align: center;
-        color: var(--muted);
-        font-size: 0.8rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        margin-top: 80px;
-      }
+  footer{ padding:40px 5%; text-align:center; color:var(--muted); font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.05); margin-top:80px; }
 
-      @media (max-width: 900px) {
-        .cursos-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-        .pacote-includes {
-          grid-template-columns: 1fr;
-        }
-      }
+  @media (max-width:900px){
+    .cursos-grid{ grid-template-columns:repeat(2,1fr); }
+    .pacote-includes{ grid-template-columns:1fr; }
+  }
 
-      @media (max-width: 640px) {
-        .cursos-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <div class="logo">Tech<span>Flow Academy</span></div>
-      <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="#cursos">Cursos</a>
-        <a href="#pacote">Pacote Completo</a>
-      </div>
-      <a class="nav-cta" href="login.html">Entrar</a>
-    </nav>
+  @media (max-width:640px){
+    .cursos-grid{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
 
-    <div class="head">
-      <span class="eyebrow">Escolha como aprender</span>
-      <h1>Cursos individuais ou Pacote Completo</h1>
-      <p>
-        Compre cada curso separadamente ou economize com o Pacote Completo que
-        inclui tudo.
-      </p>
+<nav>
+  <div class="logo">Tech<span>Flow Academy</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="#cursos">Cursos</a>
+    <a href="#pacote">Pacote Completo</a>
+  </div>
+  <a class="nav-cta" href="login.html">Entrar</a>
+</nav>
+
+<div class="head">
+  <span class="eyebrow">Escolha como aprender</span>
+  <h1>Cursos individuais ou Pacote Completo</h1>
+  <p>Compre cada curso separadamente ou economize com o Pacote Completo que inclui tudo.</p>
+</div>
+
+<div class="container">
+  <div class="cursos-grid">
+    <!-- CURSO 1: Vídeos com IA -->
+    <div class="curso-card">
+      <div class="icon">🎥</div>
+      <h3>Criação de Vídeos com IA</h3>
+      <p class="desc">Domine Veo3, Google Flow, Kling AI, Runway e CapCut AI. Crie vídeos cinematográficos para Reels, TikTok, YouTube e anúncios. Projeto pronto pra vender.</p>
+      <div class="price">R$ 497</div>
+      <!-- EDITE AQUI: troque SEU_LINK_VIDEOS pelo link real do Mercado Pago -->
+      <a href="https://mpago.la/SEU_LINK_VIDEOS" target="_blank" class="cta">Comprar Curso</a>
     </div>
 
-    <div class="container">
-      <div class="cursos-grid">
-        <!-- CURSO 1: Vídeos com IA -->
-        <div class="curso-card">
-          <div class="icon">🎥</div>
-          <h3>Criação de Vídeos com IA</h3>
-          <p class="desc">
-            Domine Veo3, Google Flow, Kling AI, Runway e CapCut AI. Crie vídeos
-            cinematográficos para Reels, TikTok, YouTube e anúncios. Projeto
-            pronto pra vender.
-          </p>
-          <div class="price">R$ 497</div>
-          <!-- EDITE AQUI: troque SEU_LINK_VIDEO pelo link real do Mercado Pago -->
-          <a href="https://mpago.la/2Zcha1P" target="_blank" class="cta"
-            >Comprar Curso</a
-          >
-        </div>
-
-        <!-- CURSO 2: WhatsApp -->
-        <div class="curso-card">
-          <div class="icon">🤖</div>
-          <h3>Agentes para WhatsApp</h3>
-          <p class="desc">
-            Construa agentes de IA que vendem automaticamente 24 horas. Integre
-            N8N, APIs e chatbots. Agente pronto pro cliente.
-          </p>
-          <div class="price">R$ 397</div>
-          <!-- EDITE AQUI: troque SEU_LINK_WHATSAPP pelo link real do Mercado Pago -->
-          <a href="https://mpago.la/1FWytFT" target="_blank" class="cta"
-            >Comprar Curso</a
-          >
-        </div>
-
-        <!-- CURSO 3: Chatbots -->
-        <div class="curso-card">
-          <div class="icon">💬</div>
-          <h3>Chatbots com IA</h3>
-          <p class="desc">
-            Crie chatbots que parecem humanos. Integre em WhatsApp, sites e
-            redes sociais. Chatbot funcionando em 24h.
-          </p>
-          <div class="price">R$ 297</div>
-          <!-- EDITE AQUI: troque SEU_LINK_CHATBOT pelo link real do Mercado Pago -->
-          <a href="https://mpago.la/176Mqj9" target="_blank" class="cta"
-            >Comprar Curso</a
-          >
-        </div>
-
-        <!-- CURSO 4: SaaS -->
-        <div class="curso-card">
-          <div class="icon">☁️</div>
-          <h3>Desenvolvimento SaaS</h3>
-          <p class="desc">
-            Crie sua própria plataforma SaaS com Python, Django, Streamlit. Do
-            protótipo até cobrar por assinatura. SaaS pronto pra lucrar.
-          </p>
-          <div class="price">R$ 597</div>
-          <!-- EDITE AQUI: troque SEU_LINK_SAAS pelo link real do Mercado Pago -->
-          <a href="https://mpago.la/29PT6zs" target="_blank" class="cta"
-            >Comprar Curso</a
-          >
-        </div>
-
-        <!-- CURSO 5: Landing Pages -->
-        <div class="curso-card">
-          <div class="icon">🌐</div>
-          <h3>Landing Pages com IA</h3>
-          <p class="desc">
-            Design que converte. Copywriting com IA, estrutura psicológica,
-            testes A/B. Landing vendendo de verdade.
-          </p>
-          <div class="price">R$ 297</div>
-          <!-- EDITE AQUI: troque SEU_LINK_LANDING pelo link real do Mercado Pago -->
-          <a href="https://mpago.la/31sgYsa" target="_blank" class="cta"
-            >Comprar Curso</a
-          >
-        </div>
-
-        <!-- CURSO 6: Sites -->
-        <div class="curso-card">
-          <div class="icon">💻</div>
-          <h3>Sites Completos com IA</h3>
-          <p class="desc">
-            HTML, CSS, JavaScript do zero. Crie sites modernos, responsivos e
-            otimizados. Site pronto pro cliente, você cobrando.
-          </p>
-          <div class="price">R$ 397</div>
-          <!-- EDITE AQUI: troque SEU_LINK_SITES pelo link real do Mercado Pago -->
-          <a href="https://mpago.la/1GBFKkZ" target="_blank" class="cta"
-            >Comprar Curso</a
-          >
-        </div>
-      </div>
-
-      <div class="divider">
-        <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
-      </div>
-
-      <div id="pacote">
-        <div class="pacote-hero">
-          <h2>Pacote Completo — Tudo em Um</h2>
-          <p class="subtitle">
-            6 cursos + biblioteca premium + agente IA 24h + atualizações
-            vitalícias. Economize R$ 2.176 comprando tudo junto.
-          </p>
-
-          <div class="pacote-price">R$ 1.997</div>
-          <div class="pacote-economia">
-            ✨ Economize R$ 2.176 (54% de desconto)
-          </div>
-
-          <div class="pacote-includes">
-            <div class="include-item">
-              <span class="check">✓</span>
-              <p><strong>6 Cursos</strong> completos com projetos</p>
-            </div>
-            <div class="include-item">
-              <span class="check">✓</span>
-              <p><strong>500+ Prompts</strong> prontos pra usar</p>
-            </div>
-            <div class="include-item">
-              <span class="check">✓</span>
-              <p><strong>Agente IA 24h</strong> respondendo dúvidas</p>
-            </div>
-            <div class="include-item">
-              <span class="check">✓</span>
-              <p><strong>Templates</strong> de sites e landing pages</p>
-            </div>
-            <div class="include-item">
-              <span class="check">✓</span>
-              <p><strong>Atualizações</strong> vitalícias grátis</p>
-            </div>
-            <div class="include-item">
-              <span class="check">✓</span>
-              <p><strong>Certificado</strong> de conclusão</p>
-            </div>
-          </div>
-
-          <!-- EDITE AQUI: troque SEU_LINK_PACOTE pelo link real do Mercado Pago (R$ 1.997) -->
-          <a href="https://mpago.la/138WA6K" target="_blank" class="pacote-cta"
-            >Garantir Pacote Completo Agora</a
-          >
-
-          <div class="guarantee">
-            🔒 Pagamento seguro · Garantia de 7 dias (devolução total se não
-            gostar)
-          </div>
-        </div>
-      </div>
+    <!-- CURSO 2: Agentes WhatsApp -->
+    <div class="curso-card">
+      <div class="icon">🤖</div>
+      <h3>Agentes para WhatsApp</h3>
+      <p class="desc">Construa agentes de IA que vendem automaticamente 24 horas. Integre N8N, APIs e chatbots. Agente pronto pro cliente.</p>
+      <div class="price">R$ 597</div>
+      <!-- EDITE AQUI: troque SEU_LINK_AGENTES pelo link real do Mercado Pago -->
+      <a href="https://mpago.la/SEU_LINK_AGENTES" target="_blank" class="cta">Comprar Curso</a>
     </div>
 
-    <footer>© 2026 TechFlow Academy — todos os direitos reservados</footer>
-  </body>
+    <!-- CURSO 3: Chatbots com IA -->
+    <div class="curso-card">
+      <div class="icon">💬</div>
+      <h3>Chatbots com IA</h3>
+      <p class="desc">Crie chatbots que parecem humanos. Integre em WhatsApp, sites e redes sociais. Chatbot funcionando em 24h.</p>
+      <div class="price">R$ 597</div>
+      <!-- EDITE AQUI: troque SEU_LINK_CHATBOTS pelo link real do Mercado Pago -->
+      <a href="https://mpago.la/SEU_LINK_CHATBOTS" target="_blank" class="cta">Comprar Curso</a>
+    </div>
+
+    <!-- CURSO 4: SaaS -->
+    <div class="curso-card">
+      <div class="icon">☁️</div>
+      <h3>Desenvolvimento SaaS</h3>
+      <p class="desc">Crie sua própria plataforma SaaS com Python, Django, Streamlit. Do protótipo até cobrar por assinatura. SaaS pronto pra lucrar.</p>
+      <div class="price">R$ 697</div>
+      <!-- EDITE AQUI: troque SEU_LINK_SAAS pelo link real do Mercado Pago -->
+      <a href="https://mpago.la/SEU_LINK_SAAS" target="_blank" class="cta">Comprar Curso</a>
+    </div>
+
+    <!-- CURSO 5: Landing Pages -->
+    <div class="curso-card">
+      <div class="icon">🌐</div>
+      <h3>Landing Pages com IA</h3>
+      <p class="desc">Design que converte. Copywriting com IA, estrutura psicológica, testes A/B. Landing vendendo de verdade.</p>
+      <div class="price">R$ 697</div>
+      <!-- EDITE AQUI: troque SEU_LINK_LANDING pelo link real do Mercado Pago -->
+      <a href="https://mpago.la/SEU_LINK_LANDING" target="_blank" class="cta">Comprar Curso</a>
+    </div>
+
+    <!-- CURSO 6: Sites -->
+    <div class="curso-card">
+      <div class="icon">💻</div>
+      <h3>Sites Completos com IA</h3>
+      <p class="desc">HTML, CSS, JavaScript do zero. Crie sites modernos, responsivos e otimizados. Site pronto pro cliente, você cobrando.</p>
+      <div class="price">R$ 697</div>
+      <!-- EDITE AQUI: troque SEU_LINK_SITES pelo link real do Mercado Pago -->
+      <a href="https://mpago.la/SEU_LINK_SITES" target="_blank" class="cta">Comprar Curso</a>
+    </div>
+  </div>
+
+  <div class="divider">
+    <p>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
+  </div>
+
+  <div id="pacote">
+    <div class="pacote-hero">
+      <h2>Pacote Completo — Tudo em Um</h2>
+      <p class="subtitle">6 cursos + biblioteca premium + agente IA 24h + atualizações vitalícias. Economize R$ 2.585 comprando tudo junto.</p>
+      
+      <div class="pacote-price">R$ 1.197</div>
+      <div class="pacote-economia">✨ Economize R$ 2.585 (68% de desconto)</div>
+
+      <div class="pacote-includes">
+        <div class="include-item">
+          <span class="check">✓</span>
+          <p><strong>6 Cursos</strong> completos com projetos</p>
+        </div>
+        <div class="include-item">
+          <span class="check">✓</span>
+          <p><strong>500+ Prompts</strong> prontos pra usar</p>
+        </div>
+        <div class="include-item">
+          <span class="check">✓</span>
+          <p><strong>Agente IA 24h</strong> respondendo dúvidas</p>
+        </div>
+        <div class="include-item">
+          <span class="check">✓</span>
+          <p><strong>Templates</strong> de sites e landing pages</p>
+        </div>
+        <div class="include-item">
+          <span class="check">✓</span>
+          <p><strong>Atualizações</strong> vitalícias grátis</p>
+        </div>
+        <div class="include-item">
+          <span class="check">✓</span>
+          <p><strong>Certificado</strong> de conclusão</p>
+        </div>
+      </div>
+
+      <!-- EDITE AQUI: troque SEU_LINK_PACOTE pelo link real do Mercado Pago (R$ 1.197) -->
+      <a href="https://mpago.la/SEU_LINK_PACOTE" target="_blank" class="pacote-cta">Garantir Pacote Completo Agora</a>
+
+      <div class="guarantee">
+        🔒 Pagamento seguro · Garantia de 7 dias (devolução total se não gostar)
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  © 2026 TechFlow Academy — todos os direitos reservados
+</footer>
+
+</body>
 </html>
